@@ -98,7 +98,20 @@ def rotate_right(word, n):
     >>> rotate_right('abcdefgh', 3)
     'fghabcde'
     """
-    pass
+    letters = [""] * len(word)
+    for index, letter in enumerate(word):
+        letter_input_index = index + n
+        if n >= 0:
+            while letter_input_index >= len(word):
+                letter_input_index -= len(word)
+        else:
+            while letter_input_index <= -len(word):
+                letter_input_index += len(word)
+        letters[letter_input_index] = letter
+    return "".join(letters)
+
+
+print(rotate_right('abcdefgh', 3))
 
 
 def get_square_index_chars(word):
