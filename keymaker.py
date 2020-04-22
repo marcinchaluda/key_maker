@@ -1,9 +1,23 @@
+import string
+
+
 def shift_characters(word, shift):
     """
     >>> shift_characters('abby', 5)
     'fggd'
     """
-    pass
+    shift_word = ""
+    for letter in word:
+        letter_index = string.ascii_lowercase.index(letter) + shift
+        if letter_index > len(string.ascii_lowercase):
+            letter_index = letter_index - len(string.ascii_lowercase)
+        elif letter_index < 0:
+            letter_index = letter_index + len(string.ascii_lowercase)
+        shift_word += string.ascii_lowercase[letter_index]
+    return shift_word
+
+
+print(shift_characters('abby', 5))
 
 
 def pad_up_to(word, shift, n):
