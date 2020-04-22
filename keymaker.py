@@ -71,7 +71,26 @@ def zig_zag_concatenate(matrix):
     >>> zig_zag_concatenate(['abc', 'def', 'ghi', 'jkl'])
     'adgjkhebcfil'
     """
-    pass
+    concatenated_string = ""
+    for letter_index in range(len(matrix[0])):
+        letter_sequence = ""
+        for word in matrix:
+            letter_sequence += word[letter_index]
+        if letter_index % 2 != 0:
+            letter_sequence = get_reversed_string(letter_sequence)
+        concatenated_string += letter_sequence
+    return concatenated_string
+
+
+def get_reversed_string(word):
+    letters = []
+    for letter in word:
+        letters.append(letter)
+    reverse_letters = reversed(letters)
+    return "".join(reverse_letters)
+
+
+print(zig_zag_concatenate(['abc', 'def', 'ghi', 'jkl']))
 
 
 def rotate_right(word, n):
