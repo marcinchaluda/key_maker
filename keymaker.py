@@ -17,9 +17,6 @@ def shift_characters(word, shift):
     return shift_word
 
 
-print(shift_characters('abby', 5))
-
-
 def pad_up_to(word, shift, n):
     """
     >>> pad_up_to('abb', 5, 11)
@@ -35,9 +32,6 @@ def pad_up_to(word, shift, n):
         return extended_word[:n]
 
 
-print(pad_up_to('abb', 5, 11))
-
-
 def abc_mirror(word):
     """
     >>> abc_mirror('abcd')
@@ -49,9 +43,6 @@ def abc_mirror(word):
     return mirror_word
 
 
-print(abc_mirror('abcd'))
-
-
 def create_matrix(word1, word2):
     """
     >>> create_matrix('mamas', 'papas')
@@ -61,9 +52,6 @@ def create_matrix(word1, word2):
     for letter in word2:
         word_matrix.append(shift_characters(word1, string.ascii_lowercase.index(letter)))
     return word_matrix
-
-
-print(create_matrix('mamas', 'papas'))
 
 
 def zig_zag_concatenate(matrix):
@@ -90,9 +78,6 @@ def get_reversed_string(word):
     return "".join(reverse_letters)
 
 
-print(zig_zag_concatenate(['abc', 'def', 'ghi', 'jkl']))
-
-
 def rotate_right(word, n):
     """
     >>> rotate_right('abcdefgh', 3)
@@ -111,9 +96,6 @@ def rotate_right(word, n):
     return "".join(letters)
 
 
-print(rotate_right('abcdefgh', 3))
-
-
 def get_square_index_chars(word):
     """
     >>> get_square_index_chars('abcdefghijklm')
@@ -127,15 +109,19 @@ def get_square_index_chars(word):
     return square_index_word
 
 
-print(get_square_index_chars('abcdefghijklm'))
-
-
 def remove_odd_blocks(word, block_length):
     """
     >>> remove_odd_blocks('abcdefghijklm', 3)
     'abcghim'
     """
-    pass
+    blocks = []
+    block_start = 0
+    for letter_index, letter in enumerate(word):
+        if block_start <= len(word):
+            blocks.append(word[block_start: block_start + block_length])
+            block_start += block_length
+    even_blocks_word = [block for index, block in enumerate(blocks) if index % 2 == 0]
+    return "".join(even_blocks_word)
 
 
 def reduce_to_fixed(word, n):
@@ -143,7 +129,14 @@ def reduce_to_fixed(word, n):
     >>> reduce_to_fixed('abcdefghijklm', 6)
     'bafedc'
     """
-    pass
+    reduced_word = [""] * len(word[:n])
+    letter_index = 0
+    for index, letter in enumerate(word[:n]):
+        letter_index = index - (n // 3)
+        if letter_index < 0:
+            letter_index = n + letter_index
+        reduced_word[letter_index] = letter
+    return get_reversed_string("".join(reduced_word))
 
 
 def hash_it(word):
