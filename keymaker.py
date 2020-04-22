@@ -43,7 +43,13 @@ def abc_mirror(word):
     >>> abc_mirror('abcd')
     'zyxw'
     """
-    pass
+    mirror_word = ""
+    for letter in word:
+        mirror_word += string.ascii_lowercase[(len(string.ascii_lowercase) -1) - string.ascii_lowercase.index(letter)]
+    return mirror_word
+
+
+print(abc_mirror('abcd'))
 
 
 def create_matrix(word1, word2):
