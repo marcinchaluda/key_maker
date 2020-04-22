@@ -25,7 +25,17 @@ def pad_up_to(word, shift, n):
     >>> pad_up_to('abb', 5, 11)
     'abbfggkllpq'
     """
-    pass
+    if len(word) >= n:
+        return word[:n]
+    else:
+        extended_word = word
+        while(len(extended_word) <= n):
+            word = shift_characters(word, shift)
+            extended_word += word
+        return extended_word[:n]
+
+
+print(pad_up_to('abb', 5, 11))
 
 
 def abc_mirror(word):
