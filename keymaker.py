@@ -119,7 +119,15 @@ def get_square_index_chars(word):
     >>> get_square_index_chars('abcdefghijklm')
     'abej'
     """
-    pass
+    square_index_word = ""
+    for index, letter in enumerate(word):
+        square_index = index ** 2
+        if square_index <= len(word):
+            square_index_word += word[square_index]
+    return square_index_word
+
+
+print(get_square_index_chars('abcdefghijklm'))
 
 
 def remove_odd_blocks(word, block_length):
