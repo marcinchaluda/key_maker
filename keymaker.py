@@ -9,7 +9,7 @@ def shift_characters(word, shift):
     shift_word = ""
     for letter in word:
         letter_index = string.ascii_lowercase.index(letter) + shift
-        if letter_index > len(string.ascii_lowercase):
+        if letter_index >= len(string.ascii_lowercase):
             letter_index = letter_index - len(string.ascii_lowercase)
         elif letter_index < 0:
             letter_index = letter_index + len(string.ascii_lowercase)
@@ -104,7 +104,7 @@ def get_square_index_chars(word):
     square_index_word = ""
     for index, letter in enumerate(word):
         square_index = index ** 2
-        if square_index <= len(word):
+        if square_index < len(word):
             square_index_word += word[square_index]
     return square_index_word
 
